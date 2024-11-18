@@ -6,30 +6,40 @@ import java.util.ArrayList;
 
 public class Main 
 {
+	static final String FILENAME = "Forage.csv";
 	public static void main(String[] args) 
 	{
+		/*
 		//TEST FOR STEP 1 (you can delete/comment this out after completing step 1)
 		Plant test = new Plant("Stinging Nettle,65,anti-inflammatory and culinary");
 		System.out.println("test plant:\n" + test + "\n\n");
+		*/
+		
+		Scanner iStream = null;
+		String plantContructor;
+		Plant temp;
+		ArrayList<Plant> plantList = new ArrayList<Plant>();
+		
 
-
-		//TODO: Step 2 - Declare + initialize variables for file input here
+		try{
+			iStream = new Scanner(new FileInputStream(FILENAME));
+		}catch(FileNotFoundException fnfe){
+			System.out.println("ERROR: No File " + FILENAME + "not found or unable to be opened.");
+		}
 
 		
-		//TODO: Step 2 - Connect input stream to file (dont forget the try/catch!)
+		while (iStream.hasNextLine()) {
+			plantContructor = iStream.nextLine();
+			temp = new Plant(plantContructor);
+			plantList.add(temp);
+		}
 
+		iStream.close();
 
-		//TODO: Step 2 - create loop to read through whole file
-
-
-			//TODO: Step 3 - build Plant Objects and store into ArrayList
-
-
-
-		//TODO: Step 2 - close the input stream
-
-
-		//TODO: Step 3 - print contents of ArrayList
+		for (Plant plant : plantList) {
+			System.out.println(plant);
+			System.out.println();
+		}
 
 	}
 }

@@ -26,6 +26,23 @@ public class Plant {
 		}
 	}
 
+	public Plant(String csvPlant) throws IllegalArgumentException{
+		String[] values = csvPlant.split(",");
+		String name = values[0];
+		double tempFahrenheit = Double.parseDouble(values[1]);
+		String uses = values[2];
+
+		if(!this.setName(name)) {
+			throw new IllegalArgumentException("Invalid name value passed: " + name);
+		}
+		if(!this.setTempFahrenheit(tempFahrenheit)) {
+			throw new IllegalArgumentException("Invalid temperature (F) value passed: " + tempFahrenheit);
+		}
+		if(!this.setUses(uses)) {
+			throw new IllegalArgumentException("Invalid uses value passed: " + uses);
+		}
+	}
+
 	public Plant(Plant original) throws IllegalArgumentException {
 		if(original == null) {
 			throw new IllegalArgumentException("Invalid Plant object to copy passed (null)");
